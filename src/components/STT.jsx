@@ -129,6 +129,7 @@ const STT = ({onTextSubmit}) => {
         {isListening ? 'Stop' : 'Start'}
       </Button>
       <TextField
+        placeholder='Speak your mind... we are listening'
         inputRef={inputRef}
         multiline
         maxRows={4}

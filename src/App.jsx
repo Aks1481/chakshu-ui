@@ -262,49 +262,59 @@ function App() {
   //   setPhases('QUERY')
   // };
   return (
-    <div style={{display:'flex',flexDirection:'column', justifyContent:'center', height:'100vh',margin:'0'}}>
-      <div style={{color:'#3795BD',height:'15%', padding:'2px 10px'}}>
+    <div style={{display:'flex', flexDirection:'column', justifyContent:'center', height:'100vh', margin:'0', backgroundColor: 'black'}}> {/* Changed background to black */}
+      <div style={{color: 'white', height:'15%', padding:'2px 10px'}}> {/* Changed text color to white */}
         <h1>CHAKSHU</h1>
       </div>
-      <main style = {{display:'flex', flexDirection:'column', alignItems:'center',justifyContent:'center',height:'70%', padding: '10px'}}>
-      <Box
-        ref = {divRef}
-        sx={{
-          padding: '35px',
-          height: '100%',
-          width:'80%',
-          overflowY: 'auto',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-          marginX:'50px',
-          backgroundColor:'#D1E9F6'
-        }}
-      >
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            style={{
-              alignSelf: message.sender === 'user' ? 'flex-end' : 'flex-start',
-              backgroundColor: message.sender === 'user' ? '#1976d2' : '#f1f1f1',
-              color: message.sender === 'user' ? 'white' : 'black',
-              padding: '10px',
-              borderRadius: '5px',
-              maxWidth: '80%',
-              wordWrap: 'break-word',
-              textAlign:'left'
-            }}
-          >
-            {message.text}
-          </div>
-        ))}
-      </Box>
+      <main style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'70%', padding: '10px'}}>
+        <Box
+          ref={divRef}
+          sx={{
+            padding: '35px',
+            height: '100%',
+            width:'80%',
+            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+            borderRadius: '15px',
+            gap: '10px',
+            marginX:'50px',
+            backgroundColor: 'lightgrey'  // Kept the box background black for consistency
+          }}
+        >
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              style={{
+                alignSelf: message.sender === 'user' ? 'flex-end' : 'flex-start',
+                backgroundColor: message.sender === 'user' ? 'white' : 'black',  // White for user messages, black for other messages
+                color: message.sender === 'user' ? 'black' : 'white',  // Black text for user messages, white text for others
+                padding: '10px',
+                borderRadius: '5px',
+                maxWidth: '80%',
+                wordWrap: 'break-word',
+                textAlign: 'left',
+                border: message.sender !== 'user' ? '1px solid white' : 'none'  // Border for better visibility of non-user messages
+              }}
+            >
+              {message.text}
+            </div>
+          ))}
+        </Box>
       </main>
-      <div style={{height:'15%',padding:'10px',margin:'0 auto'}}>
-        <STT onTextSubmit={handleSubmit}/>
+      <div style={{
+  height: '15%', 
+  padding: '10px', 
+  margin: '0 auto', 
+  backgroundColor: 'lightgrey ',  
+  borderRadius: '15px'  // This adds rounded corners
+}}>
+
+        <STT onTextSubmit={handleSubmit} />
       </div>
     </div>
   )
+  
 }
 
 export default App
